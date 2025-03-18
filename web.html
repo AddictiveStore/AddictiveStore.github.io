@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Tenis</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .card-image {
+            height: 200px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-gray-800 text-white p-4">
+        <h1 class="text-2xl font-bold text-center">Addictive Store</h1>
+    </header>
+    
+    <div class="container mx-auto p-4">
+        <div class="flex flex-col md:flex-row justify-between mb-6">
+            <!-- Buscador -->
+            <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Buscar por nombre..." 
+                    class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+            </div>
+            
+            <!-- Filtro por marca -->
+            <div class="w-full md:w-1/3">
+                <select 
+                    id="brandFilter" 
+                    class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    <option value="">Todas las marcas</option>
+                    <option value="Nike">Nike</option>
+                    <option value="Adidas">Adidas</option>
+                    <option value="Puma">Puma</option>
+                    <option value="New Balance">New Balance</option>
+                    <option value="Converse">Converse</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Catálogo de productos -->
+        <div id="productCatalog" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- Los productos se cargarán aquí vía JavaScript -->
+        </div>
+    </div>
+    
+    <script>
+        // Datos de ejemplo para el catálogo
+        const products = [
+            {
+                id: 1,
+                name: "Nike Air Max 270",
+                brand: "Nike",
+                price: 129.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 2,
+                name: "Adidas Ultraboost 21",
+                brand: "Adidas",
+                price: 149.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 3,
+                name: "Puma RS-X",
+                brand: "Puma",
+                price: 109.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 4,
+                name: "New Balance 574",
+                brand: "New Balance",
+                price: 89.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 5,
+                name: "Converse Chuck Taylor",
+                brand: "Converse",
+                price: 69.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 6,
+                name: "Nike Blazer Mid",
+                brand: "Nike",
+                price: 99.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 7,
+                name: "Adidas Stan Smith",
+                brand: "Adidas",
+                price: 79.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            },
+            {
+                id: 8,
+                name: "Puma Suede Classic",
+                brand: "Puma",
+                price: 74.99,
+                image: "AdidaDeportivoLateral.jpg"
+            }
+        ];
+        
+        // Función para renderizar los productos
+        function renderProducts(productsToRender) {
+            const productCatalog = document.getElementById('productCatalog');
+            productCatalog.innerHTML = '';
+            
+            if (productsToRender.length === 0) {
+                productCatalog.innerHTML = '<p class="col-span-full text-center text-gray-500 py-8">No se encontraron productos que coincidan con tu búsqueda.</p>';
+                return;
+            }
+            
+            productsToRender.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105';
+                
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="w-full card-image">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg">${product.name}</h3>
+                        <p class="text-gray-600">${product.brand}</p>
+                        <p class="text-blue-600 font-semibold mt-2">$${product.price.toFixed(2)}</p>
+                        <button class="w-full mt-2 bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                            Ver detalles
+                        </button>
+                    </div>
+                `;
+                
+                productCatalog.appendChild(productCard);
+            });
+        }
+        
+        // Función para filtrar productos
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedBrand = document.getElementById('brandFilter').value;
+            
+            const filteredProducts = products.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+                const matchesBrand = selectedBrand === '' || product.brand === selectedBrand;
+                
+                return matchesSearch && matchesBrand;
+            });
+            
+            renderProducts(filteredProducts);
+        }
+        
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', filterProducts);
+        document.getElementById('brandFilter').addEventListener('change', filterProducts);
+        
+        // Inicializar el catálogo con todos los productos
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+        });
+    </script>
+</body>
+</html>
